@@ -1,12 +1,12 @@
-output=$(azd env get-values)
+# output=$(azd env get-values)
 
-while IFS= read -r line; do
-  name=$(echo "$line" | cut -d '=' -f 1)
-  value=$(echo "$line" | cut -d '=' -f 2 | sed 's/^\"//;s/\"$//')
-  export "$name"="$value"
-done <<< "$output"
+# while IFS= read -r line; do
+#   name=$(echo "$line" | cut -d '=' -f 1)
+#   value=$(echo "$line" | cut -d '=' -f 2 | sed 's/^\"//;s/\"$//')
+#   export "$name"="$value"
+# done <<< "$output"
 
-echo "Environment variables set."
+# echo "Environment variables set."
 
 roles=(
     "5e0bd9bd-7b93-4f28-af87-19fc36ad61bd"
@@ -26,5 +26,5 @@ for role in "${roles[@]}"; do
         --role "$role" \
         --assignee-object-id "$AZURE_PRINCIPAL_ID" \
         --scope /subscriptions/"$AZURE_SUBSCRIPTION_ID"/resourceGroups/"$AZURE_RESOURCE_GROUP" \
-        --assignee-principal-type User
+        --assignee-principal-type ServicePrincipal
 done

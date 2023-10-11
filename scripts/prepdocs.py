@@ -37,7 +37,7 @@ from tenacity import (
     wait_random_exponential,
 )
 
-args = argparse.Namespace(verbose=False, openaihost="azure")
+args = argparse.Namespace(verbose=True, openaihost="azure")
 
 MAX_SECTION_LENGTH = 1000
 SENTENCE_SEARCH_LIMIT = 100
@@ -570,7 +570,7 @@ if __name__ == "__main__":
         help="Remove all blobs from blob storage and documents from the search index",
     )
     parser.add_argument(
-        "--localpdfparser",
+        "--localpdfpars",
         action="store_true",
         help="Use PyPdf local PDF parser (supports only digital PDFs) instead of Azure Form Recognizer service to extract text, tables and layout from the documents",
     )

@@ -1,10 +1,10 @@
-$output = azd env get-values
+# $output = azd env get-values
 
-foreach ($line in $output) {
-  $name, $value = $line.Split("=")
-  $value = $value -replace '^\"|\"$'
-  [Environment]::SetEnvironmentVariable($name, $value)
-}
+# foreach ($line in $output) {
+#   $name, $value = $line.Split("=")
+#   $value = $value -replace '^\"|\"$'
+#   [Environment]::SetEnvironmentVariable($name, $value)
+# }
 
 Write-Host "Environment variables set."
 
@@ -22,6 +22,7 @@ if ([string]::IsNullOrEmpty($env:AZURE_RESOURCE_GROUP)) {
 }
 
 foreach ($role in $roles) {
+    Write-Host "Assigning role $role to $env:AZURE_PRINCIPAL_ID"
     az role assignment create `
         --role $role `
         --assignee-object-id $env:AZURE_PRINCIPAL_ID `
