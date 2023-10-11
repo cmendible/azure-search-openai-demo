@@ -21,5 +21,5 @@ for role in "${roles[@]}"; do
         --role "$role" \
         --assignee-object-id "$AZURE_PRINCIPAL_ID" \
         --scope /subscriptions/"$AZURE_SUBSCRIPTION_ID"/resourceGroups/"$AZURE_RESOURCE_GROUP" \
-        --assignee-principal-type User
+        --assignee-principal-type ServicePrincipal
 done

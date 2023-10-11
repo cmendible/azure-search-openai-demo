@@ -17,6 +17,7 @@ if ([string]::IsNullOrEmpty($AZURE_RESOURCE_GROUP)) {
 AZURE_PRINCIPAL_ID = $(azd env get-value AZURE_PRINCIPAL_ID)
 AZURE_SUBSCRIPTION_ID = $(azd env get-value AZURE_SUBSCRIPTION_ID)
 foreach ($role in $roles) {
+    Write-Host "Assigning role $role to $env:AZURE_PRINCIPAL_ID"
     az role assignment create `
         --role $role `
         --assignee-object-id $AZURE_PRINCIPAL_ID `
